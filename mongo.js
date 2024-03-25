@@ -7,7 +7,7 @@ if(process.argv.length < 3){
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://fsopenAdmin:${password}@midudevfullstackopen.zctithl.mongodb.net/exampleNotesDatabase?retryWrites=true&w=majority&appName=midudevFullstackOpen`
+const url = `mongodb+srv://fsopenAdmin:${password}@midudevfullstackopen.zctithl.mongodb.net/testExampleNotesDatabase?retryWrites=true&w=majority&appName=midudevFullstackOpen`
 
 mongoose.set('strictQuery', false)
 mongoose.connect(url)
@@ -18,6 +18,20 @@ const noteSchema = new mongoose.Schema({
 })
 
 const Note = mongoose.model('Note', noteSchema)
+
+
+const note1 = new Note({
+    content: 'HTML is easy',
+    important: false,
+})
+const note2 = new Note({
+    content: 'Browser can execute only JavaScript',
+    important: true,
+})
+
+note1.save()
+note2.save()
+
 
 
 Note.find({}).then(result => {
